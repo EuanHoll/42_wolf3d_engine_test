@@ -10,10 +10,7 @@
 #                                                                              #
 # **************************************************************************** #
 
-SRC = main drawinfo hookcontrols readfile closeprogram fdfloop plotpoint \
-    	inbounds bcolour isoproject drawmap convertfile resetmap \
-		drawline rowtoarray fisoproject parallelproject normalproject \
-		switchpos setrotmatrix rotate validate colourconvert changeprojection
+SRC = main 
 SRCF = $(SRC:%=srcs/%.c)
 OBJ = $(SRC:%=%.o)
 NAME = fdf
