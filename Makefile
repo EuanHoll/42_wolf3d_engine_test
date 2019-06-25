@@ -10,10 +10,11 @@
 #                                                                              #
 # **************************************************************************** #
 
-SRC = main 
+SRC = main plot hookcontrols drawline drawcircle drawrays drawwalls closer \
+		getcollision drawray
 SRCF = $(SRC:%=srcs/%.c)
 OBJ = $(SRC:%=%.o)
-NAME = fdf
+NAME = wolf3d
 MINILIBX = -I minilibx -L minilibx -lmlx -framework OpenGL -framework Appkit
 LIBFT = -I libft/includes -L libft -lft
 FLAGS = -Wall -Werror -Wextra
