@@ -18,6 +18,7 @@ void	setupwalls(t_mlx *mlx)
 
 	i = 0;
 	srand(time(0));
+	/* 
 	while (i < OBJCOUNT)
 	{
 		mlx->i2d.wall[i].x1 = rand() % SCREEN_WIDTH;
@@ -25,7 +26,26 @@ void	setupwalls(t_mlx *mlx)
 		mlx->i2d.wall[i].y1 = rand() % SCREEN_HEIGHT;
 		mlx->i2d.wall[i].y2 = rand() % SCREEN_HEIGHT;
 		i++;
-	}
+	}*/
+	mlx->i2d.wall[0].x1 = 100;
+	mlx->i2d.wall[0].x2 = 200;
+	mlx->i2d.wall[0].y1 = 100;
+	mlx->i2d.wall[0].y2 = 100;
+
+	mlx->i2d.wall[1].x1 = 100;
+	mlx->i2d.wall[1].x2 = 200;
+	mlx->i2d.wall[1].y1 = 200;
+	mlx->i2d.wall[1].y2 = 200;
+
+	mlx->i2d.wall[2].x1 = 100;
+	mlx->i2d.wall[2].x2 = 100;
+	mlx->i2d.wall[2].y1 = 100;
+	mlx->i2d.wall[2].y2 = 200;
+
+	mlx->i2d.wall[3].x1 = 200;
+	mlx->i2d.wall[3].x2 = 200;
+	mlx->i2d.wall[3].y1 = 100;
+	mlx->i2d.wall[3].y2 = 200;
 }
 
 void	setup2d(t_mlx *mlx)

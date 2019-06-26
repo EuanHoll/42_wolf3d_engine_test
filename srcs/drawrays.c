@@ -28,7 +28,7 @@ void		drawrays(int x, int y, t_mlx *mlx, t_vec3 *hits)
 		i = cos((float)(a + mlx->angle) * p);
 		j = sin((float)(a + mlx->angle) * p);
 		drawray(&(t_vec3){i, j, 0}, &(t_mouse){x, y,}, mlx, &hits[k]);
-		a += 0.5;
+		a += ((float)FOV / HITLENGTH);
 		k++;
 	}
 }

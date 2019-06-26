@@ -19,8 +19,8 @@ void		fill(t_vec3 *pos, t_vec3 *hit, float angle, t_mlx *mlx)
 	float	hb;
 
 	hb = dist(hit, &(t_vec3){mlx->i2d.mouse.x, mlx->i2d.mouse.y, 0});
-	r = (int)255 - ((float)255 * (hb / 500));
-	hb = ((hb * cos(angle)) / 500) * (SCREEN_HEIGHT / 2);
+	r = (int)255 - ((float)255 * (hb / VIEWDIS));
+	hb = ((hb * cos(angle * (PI / 180))) / VIEWDIS) * (SCREEN_HEIGHT / 2);
 	colour = (r << 16L) & 0x00ff0000;
 	colour += (r << 8L) & 0x0000ff00;
 	colour += r & 0x000000ff;
@@ -33,11 +33,11 @@ void		draw3dview(t_mlx *mlx, t_vec3 *hits)
 	float splity;
 	int i;
 
-	splity = ((float)SCREEN_WIDTH / 120);
+	splity = ((float)SCREEN_WIDTH / HITLENGTH);
 	i = 0;
 	while (i < HITLENGTH)
 	{
-		fill(&(t_vec3){((float)i * splity), splity, 0}, &hits[i], ((float)i / 2) + mlx->angle, mlx);
+		fill(&(t_vec3){((float)i * splity), splity, 0}, &hits[i], ((float)i / (HITLENGTH / FOV)) + mlx->angle, mlx);
 		i++;
 	}
 }

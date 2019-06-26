@@ -25,11 +25,9 @@ COLOURFCLEAN = \033[38;5;117m
 COlOURLIB = \033[38;5;111m
 COLOURRESET = \033[0m
 
-.PHONY: all clean fclean re
-
 all: $(NAME)
 
-$(NAME): $(SRCF)
+$(NAME): $(SRCF) srcs/values.h srcs/wolf3d.h
 	@echo "$(COlOURLIB)Compiling Libaries$(COLOURRESET)"
 	@make -C libft/
 	@make -C minilibx/

@@ -28,9 +28,9 @@
 
 # define PI 3.14159265359
 # define OBJCOUNT 4
-# define FOV 60
-# define HITLENGTH FOV * 2
-# define VIEWDIS = 500
+# define FOV 90
+# define HITLENGTH 600
+# define VIEWDIS 500
 
 # define LIGHT_PINK 0xeaa8dc
 # define ORANGE 0xff6600
