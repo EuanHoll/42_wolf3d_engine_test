@@ -23,9 +23,14 @@
 # define NULL_MASK 0
 
 # define KEY_ESC 53
+# define KEY_LEFT 123
+# define KEY_RIGHT 124
 
 # define PI 3.14159265359
 # define OBJCOUNT 4
+# define FOV 60
+# define HITLENGTH FOV * 2
+# define VIEWDIS = 500
 
 # define LIGHT_PINK 0xeaa8dc
 # define ORANGE 0xff6600

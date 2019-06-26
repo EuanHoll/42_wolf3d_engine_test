@@ -19,9 +19,9 @@ void		drawwalls(t_mlx *mlx)
 	i = 0;
 	while (i < 4)
 	{
-		drawline(&(t_vec3){mlx->wall[i].x1, mlx->wall[i].y1, 0},
-				&(t_vec3){mlx->wall[i].x2, mlx->wall[i].y2, 0},
-				mlx->img_add, YELLOW);
+		drawline(&(t_vec3){mlx->i2d.wall[i].x1, mlx->i2d.wall[i].y1, 0},
+				&(t_vec3){mlx->i2d.wall[i].x2, mlx->i2d.wall[i].y2, 0},
+				mlx->i2d.img_add, YELLOW);
 		i++;
 	}
 }

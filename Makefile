@@ -11,7 +11,7 @@
 # **************************************************************************** #
 
 SRC = main plot hookcontrols drawline drawcircle drawrays drawwalls closer \
-		getcollision drawray
+		getcollision drawray loop draw3dview drawrect dist
 SRCF = $(SRC:%=srcs/%.c)
 OBJ = $(SRC:%=%.o)
 NAME = wolf3d

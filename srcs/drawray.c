@@ -12,7 +12,7 @@
 
 #include "wolf3d.h"
 
-void		drawray(t_vec3 *a, int x, int y, t_mlx *mlx)
+void		drawray(t_vec3 *a, t_mouse *m, t_mlx *mlx, t_vec3 *hit)
 {
 	int i;
 	t_vec3 vec;
@@ -25,13 +25,19 @@ void		drawray(t_vec3 *a, int x, int y, t_mlx *mlx)
 	ft_memcpy(&pos, &vec, sizeof(vec));
 	while (i < OBJCOUNT)
 	{
-		getcollision(mlx, a, mlx->wall[i], &pos);
-		if (closer(&vec, &pos, &mlx->mouse) == 0)
+		getcollision(mlx, a, mlx->i2d.wall[i], &pos);
+		if (closer(&vec, &pos, &mlx->i2d.mouse) == 0)
 			ft_memcpy(&vec, &pos, sizeof(pos));
 		i++;
 	}
 	if (vec.x != -2147483648)
-			drawline(&(t_vec3){x, y, 0}, &vec, mlx->img_add, DARK_GREEN);
+	{
+		drawline(&(t_vec3){m->x, m->y, 0}, &vec, mlx->i2d.img_add, DARK_GREEN);
+		ft_memcpy(hit, &vec, sizeof(vec));
+	}
 	else
-		drawline(&(t_vec3){x, y, 0}, &(t_vec3){x + (a->x * 1000), y + (a->y * 1000), 0}, mlx->img_add, DARK_GREEN);
+	{
+		drawline(&(t_vec3){m->x, m->y, 0}, &(t_vec3){m->x + (a->x * 1000), m->y + (a->y * 1000), 0}, mlx->i2d.img_add, DARK_GREEN);
+		*hit = (t_vec3){m->x + (a->x * 1000), m->y + (a->y * 1000), 0};
+	}
 }

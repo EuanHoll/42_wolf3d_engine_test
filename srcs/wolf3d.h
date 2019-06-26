@@ -51,7 +51,7 @@ typedef struct	s_2d
 	t_object	wall[OBJCOUNT];
 }				t_2d;
 
-typedef struct	s_2d
+typedef struct	s_3d
 {
 	void	*win;
 	void	*img;
@@ -61,8 +61,9 @@ typedef struct	s_2d
 typedef struct	s_mlx
 {
 	void		*mlx;
+	float		angle;
 	t_2d		i2d;
-	t_3d		i2d;
+	t_3d		i3d;
 }				t_mlx;
 
 void			plot(int x, int y, int colour, void *img_add);
@@ -70,10 +71,14 @@ void			drawline(t_vec3 *pos1, t_vec3 *pos2,
 							void *img_add, int colour);
 int				hookcontrols(t_mlx *mlx);
 void			drawcircle(int x, int y, t_mlx *mlx);
-void			drawrays(int x, int y, t_mlx *mlx);
+void			drawrays(int x, int y, t_mlx *mlx, t_vec3 *hits);
 void			drawwalls(t_mlx *mlx);
 t_vec3			*getcollision(t_mlx *mlx, t_vec3 *a, t_object wall, t_vec3 *pos);
 int				closer(t_vec3 *v0, t_vec3 *v1, t_mouse *m);
-void			drawray(t_vec3 *a, int x, int y, t_mlx *mlx);
+void			drawray(t_vec3 *a, t_mouse *m, t_mlx *mlx, t_vec3 *hit);
+int				loop(void *param);
+void			draw3dview(t_mlx *mlx, t_vec3 *hits);
+void			drawrect(t_vec3 *pos, t_vec3 *max, int colour, void *img_add);
+float			dist(t_vec3 *v0, t_vec3 *v1);
 
 #endif

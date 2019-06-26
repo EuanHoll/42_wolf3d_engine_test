@@ -17,7 +17,7 @@ int			closer(t_vec3 *v0, t_vec3 *v1, t_mouse *m)
 	float x;
 	float y;
 
-	x = sqrtf(powf((float)m->x - v0->x , 2) + powf((float)m->y - v0->y , 2));
-	y = sqrtf(powf((float)m->x - v1->x , 2) + powf((float)m->y - v1->y , 2));
+	x = dist(v0, &(t_vec3){m->x, m->y, 0});
+	y = dist(v1, &(t_vec3){m->x, m->y, 0});
 	return (x < y);
 }

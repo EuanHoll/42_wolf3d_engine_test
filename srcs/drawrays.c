@@ -12,20 +12,23 @@
 
 #include "wolf3d.h"
 
-void		drawrays(int x, int y, t_mlx *mlx)
+void		drawrays(int x, int y, t_mlx *mlx, t_vec3 *hits)
 {
-	int a;
-	float i;
-	float j;
-	float p;
+	float	a;
+	float	i;
+	float	j;
+	int		k; 
+	float	p;
 
 	a = 0;
+	k = 0;
 	p = PI / 180;
-	while (a < 360)
+	while (k < HITLENGTH)
 	{
-		i = cos((float)a * p);
-		j = sin((float)a * p);
-		drawray(&(t_vec3){i, j, 0}, x, y, mlx);
-		a++;
+		i = cos((float)(a + mlx->angle) * p);
+		j = sin((float)(a + mlx->angle) * p);
+		drawray(&(t_vec3){i, j, 0}, &(t_mouse){x, y,}, mlx, &hits[k]);
+		a += 0.5;
+		k++;
 	}
 }

@@ -1,34 +1,32 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        ::::::::            */
-/*   drawcircle.c                                       :+:    :+:            */
+/*   drawrect.c                                         :+:    :+:            */
 /*                                                     +:+                    */
 /*   By: ehollidg <ehollidg@student.codam.nl>         +#+                     */
 /*                                                   +#+                      */
-/*   Created: 2019/06/24 16:29:18 by ehollidg       #+#    #+#                */
-/*   Updated: 2019/06/24 16:29:18 by ehollidg      ########   odam.nl         */
+/*   Created: 2019/06/26 11:49:49 by ehollidg       #+#    #+#                */
+/*   Updated: 2019/06/26 11:49:49 by ehollidg      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "wolf3d.h"
 
-void		drawcircle(int x, int y, t_mlx *mlx)
+void		drawrect(t_vec3 *pos, t_vec3 *max, int colour, void *img_add)
 {
-	int r;
-	int i;
-	int j;
+	int x;
+	int y;
 
-	r = 10;
-	i = x - r;
-	while (i < x + r && x > 0 && i < SCREEN_WIDTH)
+	x = (int)(pos->x);
+	while (x < (int)max->x)
 	{
-		j = y - r;
-		while (j < y + r && y > 0 && j < SCREEN_HEIGHT)
+		y = (int)(pos->y);
+		while (y < (int)max->y)
 		{
-			if  (i > 0 && j > 0 && sqrt(pow(i - x, 2) + pow(j - y, 2)) < r)
-				plot(i, j, WHITE, mlx->i2d.img_add);
-			j++;
+			plot(x, y, colour, img_add);
+			y++;
 		}
-		i++;
+		x++;
 	}
 }
+

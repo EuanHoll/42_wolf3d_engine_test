@@ -12,25 +12,6 @@
 
 #include "wolf3d.h"
 
-int		loop(void *param)
-{
-	t_mlx *mlx;
-	static t_mouse m = (t_mouse){0,0};
-
-	mlx = (t_mlx*)param;
-	if (mlx->mouse.x > 0 && mlx->mouse.y > 0 && (m.x != mlx->mouse.x || m.y != mlx->mouse.y))
-	{
-		ft_bzero(mlx->img_add, (SCREEN_WIDTH * SCREEN_HEIGHT) * 4);
-		drawrays(mlx->mouse.x, mlx->mouse.y, mlx);
-		drawcircle(mlx->mouse.x, mlx->mouse.y, mlx);
-		drawwalls(mlx);
-		m.x = mlx->mouse.x;
-		m.y = mlx->mouse.y;
-		mlx_put_image_to_window(mlx->mlx, mlx->win, mlx->img, 0, 0);
-	}
-	return (0);
-}
-
 void	setupwalls(t_mlx *mlx)
 {
 	int i;
@@ -39,27 +20,34 @@ void	setupwalls(t_mlx *mlx)
 	srand(time(0));
 	while (i < OBJCOUNT)
 	{
-		mlx->wall[i].x1 = rand() % SCREEN_WIDTH;
-		mlx->wall[i].x2 = rand() % SCREEN_WIDTH;
-		mlx->wall[i].y1 = rand() % SCREEN_HEIGHT;
-		mlx->wall[i].y2 = rand() % SCREEN_HEIGHT;
+		mlx->i2d.wall[i].x1 = rand() % SCREEN_WIDTH;
+		mlx->i2d.wall[i].x2 = rand() % SCREEN_WIDTH;
+		mlx->i2d.wall[i].y1 = rand() % SCREEN_HEIGHT;
+		mlx->i2d.wall[i].y2 = rand() % SCREEN_HEIGHT;
 		i++;
 	}
 }
 
-void	setuptest(t_mlx *mlx)
+void	setup2d(t_mlx *mlx)
 {
 	int tmp;
 
 	tmp = 0;
-	mlx->mlx = mlx_init();
-	mlx->win = mlx_new_window(mlx->mlx, SCREEN_WIDTH, SCREEN_HEIGHT, "Ray Casting Test");
-	mlx->img = mlx_new_image(mlx->mlx, SCREEN_WIDTH, SCREEN_HEIGHT);
-	mlx->img_add = mlx_get_data_addr(mlx->img, &tmp, &tmp, &tmp);
+	mlx->angle = 0;
+	mlx->i2d.win = mlx_new_window(mlx->mlx, SCREEN_WIDTH, SCREEN_HEIGHT, "2D Rays");
+	mlx->i2d.img = mlx_new_image(mlx->mlx, SCREEN_WIDTH, SCREEN_HEIGHT);
+	mlx->i2d.img_add = mlx_get_data_addr(mlx->i2d.img, &tmp, &tmp, &tmp);
 	setupwalls(mlx);
-	hookcontrols(mlx);
-	mlx_loop_hook(mlx->mlx, loop, (void*)mlx);
-	mlx_loop(mlx->mlx);
+}
+
+void	setup3d(t_mlx *mlx)
+{
+	int tmp;
+
+	tmp = 0;
+	mlx->i3d.win = mlx_new_window(mlx->mlx, SCREEN_WIDTH, SCREEN_HEIGHT, "3D Ray");
+	mlx->i3d.img = mlx_new_image(mlx->mlx, SCREEN_WIDTH, SCREEN_HEIGHT);
+	mlx->i3d.img_add = mlx_get_data_addr(mlx->i3d.img, &tmp, &tmp, &tmp);
 }
 
 int		main(int argc, char **argv)
@@ -68,6 +56,13 @@ int		main(int argc, char **argv)
 
 	argv--;
 	if (argc == 1)
-		setuptest(&mlx);
+	{
+		mlx.mlx = mlx_init();
+		setup3d(&mlx);
+		setup2d(&mlx);
+		hookcontrols(&mlx);
+		mlx_loop_hook(mlx.mlx, loop, (void*)(&mlx));
+		mlx_loop(mlx.mlx);
+	}
 	return (0);
 }

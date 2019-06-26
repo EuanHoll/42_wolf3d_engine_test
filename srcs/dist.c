@@ -1,34 +1,19 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        ::::::::            */
-/*   drawcircle.c                                       :+:    :+:            */
+/*   dist.c                                             :+:    :+:            */
 /*                                                     +:+                    */
 /*   By: ehollidg <ehollidg@student.codam.nl>         +#+                     */
 /*                                                   +#+                      */
-/*   Created: 2019/06/24 16:29:18 by ehollidg       #+#    #+#                */
-/*   Updated: 2019/06/24 16:29:18 by ehollidg      ########   odam.nl         */
+/*   Created: 2019/06/26 11:55:31 by ehollidg       #+#    #+#                */
+/*   Updated: 2019/06/26 11:55:31 by ehollidg      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "wolf3d.h"
 
-void		drawcircle(int x, int y, t_mlx *mlx)
+float	dist(t_vec3 *v0, t_vec3 *v1)
 {
-	int r;
-	int i;
-	int j;
-
-	r = 10;
-	i = x - r;
-	while (i < x + r && x > 0 && i < SCREEN_WIDTH)
-	{
-		j = y - r;
-		while (j < y + r && y > 0 && j < SCREEN_HEIGHT)
-		{
-			if  (i > 0 && j > 0 && sqrt(pow(i - x, 2) + pow(j - y, 2)) < r)
-				plot(i, j, WHITE, mlx->i2d.img_add);
-			j++;
-		}
-		i++;
-	}
+	return (sqrtf(powf(v1->x - v0->x , 2) + powf(v1->y - v0->y , 2)));
 }
+

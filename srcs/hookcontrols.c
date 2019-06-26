@@ -35,14 +35,20 @@ static int	keycontroller(int key, void *param)
 	mlx = (t_mlx*)param;
 	if (key == KEY_ESC)
 		exit1(NULL);
+	else if (key == KEY_LEFT)
+		mlx->angle -= 5;
+	else if (key == KEY_RIGHT)
+		mlx->angle += 5;
 	return (0);
 }
 
 int			hookcontrols(t_mlx *mlx)
 {
-	mlx_hook(mlx->win, MOUSE_MOVE_EVENT, NULL_MASK, mousemove, (void*)(&mlx->mouse));
-	mlx_hook(mlx->win, CLOSE_EVENT, 1L << CLOSE_EVENT, exit1, NULL);
-	mlx_hook(mlx->win, KEY_PRESS_EVENT, NULL_MASK, keycontroller, (void*)mlx);
+	mlx_hook(mlx->i2d.win, MOUSE_MOVE_EVENT, NULL_MASK, mousemove, (void*)(&mlx->i2d.mouse));
+	mlx_hook(mlx->i2d.win, CLOSE_EVENT, 1L << CLOSE_EVENT, exit1, NULL);
+	mlx_hook(mlx->i2d.win, KEY_PRESS_EVENT, NULL_MASK, keycontroller, (void*)mlx);
+	mlx_hook(mlx->i3d.win, CLOSE_EVENT, 1L << CLOSE_EVENT, exit1, NULL);
+	mlx_hook(mlx->i3d.win, KEY_PRESS_EVENT, NULL_MASK, keycontroller, (void*)mlx);
 	return (0);
 }
 
