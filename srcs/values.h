@@ -28,7 +28,7 @@
 
 # define PI 3.14159265359
 # define OBJCOUNT 4
-# define FOV 90
+# define FOV 70
 # define HITLENGTH 600
 # define VIEWDIS 500
 

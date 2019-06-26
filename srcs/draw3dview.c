@@ -18,9 +18,10 @@ void		fill(t_vec3 *pos, t_vec3 *hit, float angle, t_mlx *mlx)
 	int		r;
 	float	hb;
 
-	hb = dist(hit, &(t_vec3){mlx->i2d.mouse.x, mlx->i2d.mouse.y, 0});
-	r = (int)255 - ((float)255 * (hb / VIEWDIS));
-	hb = ((hb * cos(angle * (PI / 180))) / VIEWDIS) * (SCREEN_HEIGHT / 2);
+	angle--;
+	hb = dist(hit, &(t_vec3){mlx->i2d.mouse.x, mlx->i2d.mouse.y, 0}) / VIEWDIS;
+	r = (int)255 - ((float)255 * hb);
+	hb = hb * (SCREEN_HEIGHT / 2);
 	colour = (r << 16L) & 0x00ff0000;
 	colour += (r << 8L) & 0x0000ff00;
 	colour += r & 0x000000ff;
